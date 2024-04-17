@@ -15,6 +15,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   FirebaseFirestore db = FirebaseFirestore.instance;
 
+  final snackBar = const SnackBar(
+    content: Text('Your task has been added.'),
+  );
+
   final List<String> tasks = <String>[];
 
   final List<bool> checkboxes = List.generate(8, (index) => false);
@@ -312,7 +316,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   addItemToList();
                   _textFieldFocusNode.unfocus();
+                  //This will unfocus the keyboard, closing it
                   clearTextField();
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
                 child: const Text('Add To-Do Item'),
               ),
