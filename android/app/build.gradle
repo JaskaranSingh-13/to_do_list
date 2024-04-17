@@ -1,8 +1,16 @@
 plugins {
     id "com.android.application"
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    // END: FlutterFire Configuration
+    // START: FlutterFire Configuration
+    // END: FlutterFire Configuration
+
+    // START: FlutterFire Configuration
+    // END: FlutterFire Configuration
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
-    
+
 }
 
 def localProperties = new Properties()
@@ -25,7 +33,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.to_do_list"
-    compileSdk flutter.compileSdkVersion
+    compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -46,11 +54,12 @@ android {
         applicationId "com.example.to_do_list"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
+        minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true 
         minSdkVersion 19
-        multiDexEnabled true
     }
 
     buildTypes {
@@ -67,6 +76,7 @@ flutter {
 }
 
 dependencies {
-    implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
+  implementation platform('com.google.firebase:firebase-bom:32.8.0')
     implementation("com.google.firebase:firebase-analytics")
+
 }
